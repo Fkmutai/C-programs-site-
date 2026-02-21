@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Calculator</title>
+    <style>
+        /* --- CSS: The Design --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0f172a;
+        }
+
+        .calculator {
+            background-color: #1e293b;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            width: 320px;
+        }
+
+        #display {
+            width: 100%;
+            height: 70px;
+            font-size: 2.5rem;
+            text-align: right;
+            border: none;
+            background: transparent;
+            color: #f8fafc;
+            margin-bottom: 20px;
+            padding: 10px;
+            outline: none;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            height: 60px;
+            border-radius: 12px;
+            border: none;
+            background-color: #334155;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #475569;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Specialized Buttons */
+        .operator {
+            color: #38bdf8;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+        }
+
+        .equals {
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            grid-column: span 2;
+        }
+
+        .equals:hover {
+            background: #7dd3fc;
+        }
+
+        .clear {
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <input type="text" id="display" placeholder="0" readonly>
+        
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button class="operator" onclick="deleteLast()">DEL</button>
+            <button class="operator" onclick="appendToDisplay('%')">%</button>
+            <button class="operator" onclick="appendToDisplay('/')">/</button>
+            
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button class="operator" onclick="appendToDisplay('*')">×</button>
+            
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button class="operator" onclick="appendToDisplay('-')">-</button>
+            
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button class="operator" onclick="appendToDisplay('+')">+</button>
+            
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button class="equals" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+
+        function appendToDisplay(input) {
+            // Prevent multiple operators in a row (simple check)
+            display.value += input;
+        }
+
+        function clearDisplay() {
+            display.value = "";
+        }
+
+        function deleteLast() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                // We use Function constructor instead of eval for a tiny bit more safety
+                display.value = new Function('return ' + display.value)();
+            } catch (error) {
+                display.value = "Error";
+                setTimeout(clearDisplay, 1500); // Clear error after 1.5s
+            }
+        }
+    </script>
+</body>
+</html>
