@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Styled Table Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* zebra striping */
+        }
+        tr:hover {
+            background-color: #ddd; /* highlight row on hover */
+        }
+        caption {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <caption>Employee Directory</caption>
+    <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Email</th>
+    </tr>
+    <tr>
+        <td>Jane Doe</td>
+        <td>Finance</td>
+        <td>jane.doe@example.com</td>
+    </tr>
+    <tr>
+        <td>John Smith</td>
+        <td>Marketing</td>
+        <td>john.smith@example.com</td>
+    </tr>
+    <tr>
+        <td>Alice Johnson</td>
+        <td>Engineering</td>
+        <td>alice.johnson@example.com</td>
+    </tr>
+</table>
+
+</body>
+</html>
