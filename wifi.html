@@ -1,0 +1,1124 @@
+
+<!DOCTYPE html>
+<html manifest="cache.appcache">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>loading...</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    
+    <style>
+        #err:empty {
+            display: none;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    
+    <form name="sendin" action="http://detailedspace1.net/login" method="post" style="display:none">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="http://www.msftconnecttest.com/redirect" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script>
+        /*
+         * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
+         * Digest Algorithm, as defined in RFC 1321.
+         * Version 1.1 Copyright (C) Paul Johnston 1999 - 2002.
+         * Code also contributed by Greg Holt
+         * See http://pajhome.org.uk/site/legal.html for details.
+         */
+
+        /*
+         * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+         * to work around bugs in some JS interpreters.
+         */
+        function safe_add(x, y) {
+            var lsw = (x & 0xFFFF) + (y & 0xFFFF)
+            var msw = (x >> 16) + (y >> 16) + (lsw >> 16)
+            return (msw << 16) | (lsw & 0xFFFF)
+        }
+
+        /*
+         * Bitwise rotate a 32-bit number to the left.
+         */
+        function rol(num, cnt) {
+            return (num << cnt) | (num >>> (32 - cnt))
+        }
+
+        /*
+         * These functions implement the four basic operations the algorithm uses.
+         */
+        function cmn(q, a, b, x, s, t) {
+            return safe_add(rol(safe_add(safe_add(a, q), safe_add(x, t)), s), b)
+        }
+
+        function ff(a, b, c, d, x, s, t) {
+            return cmn((b & c) | ((~b) & d), a, b, x, s, t)
+        }
+
+        function gg(a, b, c, d, x, s, t) {
+            return cmn((b & d) | (c & (~d)), a, b, x, s, t)
+        }
+
+        function hh(a, b, c, d, x, s, t) {
+            return cmn(b ^ c ^ d, a, b, x, s, t)
+        }
+
+        function ii(a, b, c, d, x, s, t) {
+            return cmn(c ^ (b | (~d)), a, b, x, s, t)
+        }
+
+        /*
+         * Calculate the MD5 of an array of little-endian words, producing an array
+         * of little-endian words.
+         */
+        function coreMD5(x) {
+            var a = 1732584193
+            var b = -271733879
+            var c = -1732584194
+            var d = 271733878
+
+            for (i = 0; i < x.length; i += 16) {
+                var olda = a
+                var oldb = b
+                var oldc = c
+                var oldd = d
+
+                a = ff(a, b, c, d, x[i + 0], 7, -680876936)
+                d = ff(d, a, b, c, x[i + 1], 12, -389564586)
+                c = ff(c, d, a, b, x[i + 2], 17, 606105819)
+                b = ff(b, c, d, a, x[i + 3], 22, -1044525330)
+                a = ff(a, b, c, d, x[i + 4], 7, -176418897)
+                d = ff(d, a, b, c, x[i + 5], 12, 1200080426)
+                c = ff(c, d, a, b, x[i + 6], 17, -1473231341)
+                b = ff(b, c, d, a, x[i + 7], 22, -45705983)
+                a = ff(a, b, c, d, x[i + 8], 7, 1770035416)
+                d = ff(d, a, b, c, x[i + 9], 12, -1958414417)
+                c = ff(c, d, a, b, x[i + 10], 17, -42063)
+                b = ff(b, c, d, a, x[i + 11], 22, -1990404162)
+                a = ff(a, b, c, d, x[i + 12], 7, 1804603682)
+                d = ff(d, a, b, c, x[i + 13], 12, -40341101)
+                c = ff(c, d, a, b, x[i + 14], 17, -1502002290)
+                b = ff(b, c, d, a, x[i + 15], 22, 1236535329)
+
+                a = gg(a, b, c, d, x[i + 1], 5, -165796510)
+                d = gg(d, a, b, c, x[i + 6], 9, -1069501632)
+                c = gg(c, d, a, b, x[i + 11], 14, 643717713)
+                b = gg(b, c, d, a, x[i + 0], 20, -373897302)
+                a = gg(a, b, c, d, x[i + 5], 5, -701558691)
+                d = gg(d, a, b, c, x[i + 10], 9, 38016083)
+                c = gg(c, d, a, b, x[i + 15], 14, -660478335)
+                b = gg(b, c, d, a, x[i + 4], 20, -405537848)
+                a = gg(a, b, c, d, x[i + 9], 5, 568446438)
+                d = gg(d, a, b, c, x[i + 14], 9, -1019803690)
+                c = gg(c, d, a, b, x[i + 3], 14, -187363961)
+                b = gg(b, c, d, a, x[i + 8], 20, 1163531501)
+                a = gg(a, b, c, d, x[i + 13], 5, -1444681467)
+                d = gg(d, a, b, c, x[i + 2], 9, -51403784)
+                c = gg(c, d, a, b, x[i + 7], 14, 1735328473)
+                b = gg(b, c, d, a, x[i + 12], 20, -1926607734)
+
+                a = hh(a, b, c, d, x[i + 5], 4, -378558)
+                d = hh(d, a, b, c, x[i + 8], 11, -2022574463)
+                c = hh(c, d, a, b, x[i + 11], 16, 1839030562)
+                b = hh(b, c, d, a, x[i + 14], 23, -35309556)
+                a = hh(a, b, c, d, x[i + 1], 4, -1530992060)
+                d = hh(d, a, b, c, x[i + 4], 11, 1272893353)
+                c = hh(c, d, a, b, x[i + 7], 16, -155497632)
+                b = hh(b, c, d, a, x[i + 10], 23, -1094730640)
+                a = hh(a, b, c, d, x[i + 13], 4, 681279174)
+                d = hh(d, a, b, c, x[i + 0], 11, -358537222)
+                c = hh(c, d, a, b, x[i + 3], 16, -722521979)
+                b = hh(b, c, d, a, x[i + 6], 23, 76029189)
+                a = hh(a, b, c, d, x[i + 9], 4, -640364487)
+                d = hh(d, a, b, c, x[i + 12], 11, -421815835)
+                c = hh(c, d, a, b, x[i + 15], 16, 530742520)
+                b = hh(b, c, d, a, x[i + 2], 23, -995338651)
+
+                a = ii(a, b, c, d, x[i + 0], 6, -198630844)
+                d = ii(d, a, b, c, x[i + 7], 10, 1126891415)
+                c = ii(c, d, a, b, x[i + 14], 15, -1416354905)
+                b = ii(b, c, d, a, x[i + 5], 21, -57434055)
+                a = ii(a, b, c, d, x[i + 12], 6, 1700485571)
+                d = ii(d, a, b, c, x[i + 3], 10, -1894986606)
+                c = ii(c, d, a, b, x[i + 10], 15, -1051523)
+                b = ii(b, c, d, a, x[i + 1], 21, -2054922799)
+                a = ii(a, b, c, d, x[i + 8], 6, 1873313359)
+                d = ii(d, a, b, c, x[i + 15], 10, -30611744)
+                c = ii(c, d, a, b, x[i + 6], 15, -1560198380)
+                b = ii(b, c, d, a, x[i + 13], 21, 1309151649)
+                a = ii(a, b, c, d, x[i + 4], 6, -145523070)
+                d = ii(d, a, b, c, x[i + 11], 10, -1120210379)
+                c = ii(c, d, a, b, x[i + 2], 15, 718787259)
+                b = ii(b, c, d, a, x[i + 9], 21, -343485551)
+
+                a = safe_add(a, olda)
+                b = safe_add(b, oldb)
+                c = safe_add(c, oldc)
+                d = safe_add(d, oldd)
+            }
+            return [a, b, c, d]
+        }
+
+        /*
+         * Convert an array of little-endian words to a hex string.
+         */
+        function binl2hex(binarray) {
+            var hex_tab = "0123456789abcdef"
+            var str = ""
+            for (var i = 0; i < binarray.length * 4; i++) {
+                str += hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8 + 4)) & 0xF) +
+                    hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8)) & 0xF)
+            }
+            return str
+        }
+
+        /*
+         * Convert an array of little-endian words to a base64 encoded string.
+         */
+        function binl2b64(binarray) {
+            var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+            var str = ""
+            for (var i = 0; i < binarray.length * 32; i += 6) {
+                str += tab.charAt(((binarray[i >> 5] << (i % 32)) & 0x3F) |
+                    ((binarray[i >> 5 + 1] >> (32 - i % 32)) & 0x3F))
+            }
+            return str
+        }
+
+        /*
+         * Convert an 8-bit character string to a sequence of 16-word blocks, stored
+         * as an array, and append appropriate padding for MD4/5 calculation.
+         * If any of the characters are >255, the high byte is silently ignored.
+         */
+        function str2binl(str) {
+            var nblk = ((str.length + 8) >> 6) + 1 // number of 16-word blocks
+            var blks = new Array(nblk * 16)
+            for (var i = 0; i < nblk * 16; i++) blks[i] = 0
+            for (var i = 0; i < str.length; i++)
+                blks[i >> 2] |= (str.charCodeAt(i) & 0xFF) << ((i % 4) * 8)
+            blks[i >> 2] |= 0x80 << ((i % 4) * 8)
+            blks[nblk * 16 - 2] = str.length * 8
+            return blks
+        }
+
+        /*
+         * Convert a wide-character string to a sequence of 16-word blocks, stored as
+         * an array, and append appropriate padding for MD4/5 calculation.
+         */
+        function strw2binl(str) {
+            var nblk = ((str.length + 4) >> 5) + 1 // number of 16-word blocks
+            var blks = new Array(nblk * 16)
+            for (var i = 0; i < nblk * 16; i++) blks[i] = 0
+            for (var i = 0; i < str.length; i++)
+                blks[i >> 1] |= str.charCodeAt(i) << ((i % 2) * 16)
+            blks[i >> 1] |= 0x80 << ((i % 2) * 16)
+            blks[nblk * 16 - 2] = str.length * 16
+            return blks
+        }
+
+        /*
+         * External interface
+         */
+        function hexMD5(str) {
+            return binl2hex(coreMD5(str2binl(str)))
+        }
+
+        function hexMD5w(str) {
+            return binl2hex(coreMD5(strw2binl(str)))
+        }
+
+        function b64MD5(str) {
+            return binl2b64(coreMD5(str2binl(str)))
+        }
+
+        function b64MD5w(str) {
+            return binl2b64(coreMD5(strw2binl(str)))
+        }
+        /* Backward compatibility */
+        function calcMD5(str) {
+            return binl2hex(coreMD5(str2binl(str)))
+        }
+    </script>
+    <script type="text/javascript">
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('\232' + 'user' + '\216\223\027\107\152\147\142\113\044\022\146\176\026\264\077\110');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+        <div class="container">
+     
+
+
+        <div class=" login">
+
+
+            <div class="md:w-2/3 w-full mx-auto">
+                <p class="logo-area text-center text-green" id="wifi_name"></p>
+                <div class=" text-center  justify-center items-center mx-auto ">
+                    <div class="card3">
+                        <h4 class="texth text-white">How To Purchase:-.</h4>
+                        <h6 class="text-white text-left">1.Tap on your preffered package.</h6>
+                        <h6 class="text-white text-left">2.Enter your phone number</h6>
+                        <h6 class="text-white text-left">3.Click "PAY NOW"</h6>
+                        <h6 class="text-white text-left">4.Enter your m-pesa pin, wait for 30sec for mpesa authentication.</h6>
+                          <p id="paytype" class="text-purple mt-2"></p>
+                    </div>
+
+                </div>
+                <div class=" text-center">
+                                        <div><br>
+                        <div>
+                          <div style="display:none" id="stkErrorMessage" class="alert alert-danger text-center" role="alert"></div>
+                          <div id="price_quota" class="flex justify-center "></div>
+                            <div id="time_limit" class="flex justify-center "></div>
+                            <div id="time_limit2" class="flex justify-center "></div>
+                             <div id="price_quota2" class="flex justify-center "></div>
+                            <div id="time_limit22" class="flex justify-center "></div>
+                            <div id="time_limit222" class="flex justify-center "></div>
+                        </div>
+                        <div class="login">
+					
+        <div class="hidden md:w-1/2 bg-green-200 my-5 px-4 py-4 mx-auto rounded-md" id="notification">
+        </div>
+                                    
+                          
+                            <input hidden type="text" id="amount">
+                            <input hidden type="text"  id="mac" value='0C:9A:3C:CD:49:52'>
+                             
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="card2 login">
+                    <p class=" text-center text-white"><small>Reconnect account</small></p>
+                    <p class="text-center text-white">(Enter mpesa code below from the payment you made eg:QAH9QWWZRR )</p>
+                    <input autofocus type="text" id="code2" name="code2" class="code" placeholder="Enter Mpesa Code you paid with" />
+                    <input hidden type="text" id="mac2" value='0C:9A:3C:CD:49:52'>
+               
+                    <button class="btn btn-reconnect text-space" id="reconnect-form">Reconnect </button>
+                </div>
+            </div>
+
+            <div class="card2 login">
+                <p class=" text-center text-white"><small>Voucher recharge</small></p>
+                <p class="text-center text-white">(Call admin for voucher recharge incase your payment is not successful)</p>
+                <input autofocus type="text" id="code" name="code" class="voucher" placeholder="Enter voucher code" />
+                <input hidden type="text" id="mac2" value='0C:9A:3C:CD:49:52'>
+                    
+                <button class="btn btn-activate text-space" id="voucher-form">Activate voucher     </button>
+            </div>
+        </div>
+
+        <div class="login card2">
+
+            <form class="login" name="login" action="http://detailedspace1.net/login" method="post"> <input type="hidden" name="dst" value="http://www.msftconnecttest.com/redirect" />
+                <p class="logo-area text-center" id="wifi_name"></p>
+                <p class="text-center text-white">(Enter your username plus password to login.)</p>
+                <input type="hidden" name="popup" value="true" />
+                <div class="s-login">
+                    <hr/>
+                    <input type="text" name="username" class="username" placeholder="Username" />
+                    <input type="password" name="password" class="password" placeholder="Password" />
+                    
+
+
+                </div>
+                <button type="submit" class="btn btn-login text-space"> <b>LOGIN</b></button>
+            </form>
+        </div>
+         <div style="margin-bottom: 40px;"></div>
+
+
+      
+
+
+    </div>
+    </p>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="swal.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <!-- <script src="script.js"></script> -->
+
+    <script>
+        // JavaScript detection and fallback
+        window.jsEnabled = true;
+        
+        // If no JavaScript support detected after 3 seconds, redirect to fallback
+        setTimeout(function() {
+            if (!window.jsEnabled) {
+                window.location.href = 'fallback.php?mac=0C:9A:3C:CD:49:52';
+            }
+        }, 3000);
+    </script>
+    
+    <noscript>
+        <!-- Immediate redirect for browsers with JS disabled -->
+        <meta http-equiv="refresh" content="0;url=fallback.php?mac=0C:9A:3C:CD:49:52">
+        <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+            <h2>JavaScript Required</h2>
+            <p>This page requires JavaScript. You are being redirected to a simplified version...</p>
+            <p>If you are not redirected automatically, <a href="fallback.php?mac=0C:9A:3C:CD:49:52">click here</a>.</p>
+        </div>
+    </noscript>
+
+    <script>
+
+
+
+               var server, lnmolink, lnmolink2, lnmolink3, lnmolink4, lnmolink5, shortcode, title, pybillType, Paybill, router;
+            $.getJSON("prices.json", function(data) {
+
+                if (data) {
+                    const quota = data.quota,
+                        limit = data.duration,
+                        limit2 = data.duration2,
+                        quota2 = data.quota2,
+                        limit22 = data.duration22,
+                        limit222 = data.duration222
+
+                    //server = data.server
+
+                    lnmolink = data.lnmoapi
+                    lnmolink2 = data.lnmoapi2
+                    lnmolink3 = data.lnmoapi3
+                    lnmolink4 = data.lnmoapi4
+                    lnmolink5 = data.lnmoapi5
+                    shortcode = data.shortcode
+                    router = data.router
+                    pybillType = data.paybill == 0 ? `(CUSTOMER CARE CONTACT ${data.customer_care_contact})` : 'M-PESA PayBill'
+                    Paybill = data.paybill_no
+                        // $("#logo").attr("src", data.logo)
+                    $("title, #wifi_name").text(data.title)
+                    $("#paytype").text(pybillType)
+                    $("#paybill").text(Paybill)
+                    quota.map((data_q) => {
+                        $("#price_quota").append(`
+                                    <div onclick="dvalue(${data_q.price})" class="bg-${data_q.color} ring marg-oo ring-${data_q.color} ring-offset-2 border-2 px-1 py-1 h-28 w-28 shadow  text-white flex flex-col justify-center items-center hover:bg-gray word-break:break-all">
+                              
+                                        
+                                    <p class="font-bold px-0 leading-3 text-green">
+                                        <small>${data_q.quota_limit}</small>
+                                    </p>
+                                    <p class="font-bold px-0 leading-3 text-red">
+                                        <small>KSH:${data_q.price}/-</small>
+                                    </p>
+                                     <p class="text-xs py-0 leading-3 text-black"><small>${data_q.speeds}</small></p>
+                                     
+                                    
+
+                                    </div>
+                                `)
+                    })
+
+                    limit.map((limit_data) => {
+                        $("#time_limit").append(`
+                                    <div onclick="dvalue(${limit_data.price})" class="bg-${limit_data.color} ring marg-oo ring-${limit_data.color} ring-offset-2 border-2 px-1 py-1 h-28 w-28 shadow  text-white flex flex-col justify-center items-center hover:bg-gray word-break:break-all">
+                                    
+                                        
+                                        <p class="font-bold px-0 leading-3 text-green">
+                                        <small>${limit_data.quota_limit}</small>
+                                        </p>    
+                                        <p class="font-bold px-0 leading-3 text-red">
+                                        <small>KSH:${limit_data.price}/-</small>
+                                        </p>   
+                                         <p class="text-xs py-0 leading-3 text-black"><small>${limit_data.speeds}</small></p>                             
+                                        
+                                        
+                                    </div>
+                                `)
+                    })
+                    limit2.map((limit_data) => {
+                        $("#time_limit2").append(`
+                                    <div onclick="dvalue(${limit_data.price})" class="bg-${limit_data.color} ring marg-oo ring-${limit_data.color} ring-offset-2 border-2 px-1 py-1 h-28 w-28 shadow  text-white flex flex-col justify-center items-center hover:bg-gray">
+                                       
+                                         
+                                        
+                                       
+                                        <p class="font-bold px-0 leading-3 text-green">
+                                        <small>${limit_data.quota_limit}</small>
+                                        </p>
+                                         <p class="font-bold px-0 leading-3 text-red">
+                                        <small>KSH:${limit_data.price}/-</small>
+                                        </p>
+                                         <p class="text-xs py-0 leading-3 text-black"><small>${limit_data.speeds}</small></p>
+                                         
+                                    </div>
+                                `)
+                    })
+                     quota2.map((data_q) => {
+                        $("#price_quota2").append(`
+                                    <div onclick="dvalue(${data_q.price})" class="bg-${data_q.color} ring marg-oo ring-${data_q.color} ring-offset-2 border-2 px-1 py-1 h-28 w-28 shadow  text-white flex flex-col justify-center items-center hover:bg-gray word-break:break-all">
+                              
+                                        
+                                    <p class="font-bold px-0 leading-3 text-green">
+                                        <small>${data_q.quota_limit}</small>
+                                    </p>
+                                    <p class="font-bold px-0 leading-3 text-red">
+                                        <small>KSH:${data_q.price}/-</small>
+                                        
+                                    </p>
+                                     <p class="text-xs py-0 leading-3 text-black"><small>${data_q.speeds}</small></p>
+                                   
+                                    </div>
+                                `)
+                    }) 
+                    limit22.map((limit_data) => {
+                        $("#time_limit22").append(`
+                                    <div onclick="dvalue(${limit_data.price})" class="bg-${limit_data.color} ring  marg-oo ring-${limit_data.color} ring-offset-2 border-2 px-1 py-1 h-28 w-28 shadow  text-white flex flex-col justify-center items-center hover:bg-gray">
+                                       
+                                         
+                                        
+                                       
+                                        <p class="font-bold px-0 leading-3 text-green">
+                                        <small>${limit_data.quota_limit}</small>
+                                        </p>
+                                         <p class="font-bold px-0 leading-3 text-red">
+                                        <small>KSH:${limit_data.price}/-</small>
+                                        </p>
+                                         <p class="text-xs py-0 leading-3 text-black"><small>${limit_data.speeds}</small></p>
+                                        
+                                    </div>
+                                `)
+                    })
+
+                    limit222.map((limit_data) => {
+                        $("#time_limit222").append(`
+                                    <div onclick="dvalue(${limit_data.price})" class="bg-${limit_data.color} ring marg-oo ring-${limit_data.color} ring-offset-2 border-2 px-1 py-1 h-28 w-28 shadow  text-white flex flex-col justify-center items-center hover:bg-gray">
+                                       
+                                         
+                                        
+                                       
+                                        <p class="font-bold px-0 leading-3 text-green">
+                                        <small>${limit_data.quota_limit}</small>
+                                        </p>
+                                         <p class="font-bold px-0 leading-3 text-red">
+                                        <small>KSH:${limit_data.price}/-</small>
+                                        </p>
+                                         <p class="text-xs py-0 leading-3 text-black"><small>${limit_data.speeds}</small></p>
+                                        
+                                    </div>
+                                `)
+                    })
+
+                   
+                }
+            })       
+
+
+            $("#voucher-form").on('click', function(ev) {
+                ev.preventDefault();
+                var code = $("#code").val(),
+                    mac = $("#mac2").val()
+
+
+
+
+                if (!code || code == null) {
+                    swal.fire('', "Please enter the voucher code", 'error')
+                    return
+                }
+                if (!mac || mac == null) {
+                    swal.fire('', "mac not found call admin ", 'error')
+                    return
+                }
+
+
+                const codeData2 = {
+                    "mac": mac,
+                    "code": code,
+                    "routr": router
+                }
+
+
+             
+             				Swal.fire({
+					  title: "Please wait...",
+					text:  'Kindly wait as we try to validate your VOUCHER CODE and connect you, this may take up to 40sec.',
+					  imageUrl: "Loading_4.gif",
+						  showConfirmButton: false,
+              				allowOutsideClick: false,
+              				focusConfirm: false,
+					  timer: 30000,
+					  timerProgressBar: true,
+					  didOpen: () => {
+					    Swal.showLoading()
+					    
+					    const b = Swal.getHtmlContainer().querySelector('b')
+					    timerInterval = setInterval(() => {
+					      b.textContent = Swal.getTimerLeft()
+					    }, 100)
+					  },
+					  willClose: () => {
+					    clearInterval(timerInterval)
+					  }				  
+					  
+						
+					}).then((result) => {
+					 /* Read more about handling dismissals below */		  
+					
+					
+					  if (result.dismiss === Swal.DismissReason.timer) {
+					  Swal.fire({
+						  icon: 'error',
+						  title: 'Oops...',
+						  text: 'Your request took too long try again.'
+						 
+						})
+					    //console.log('I was closed by the timer')
+					  }          
+						
+					
+					})
+
+            				
+ 					$.ajax({
+					    type: "POST",
+					    url: lnmolink2,
+					    data: codeData2,
+					    success: function(response) {
+					      swal.fire("", response)
+					      location.reload(); 
+					   
+						//alert(response);
+						//return response;    
+						var jsFormValidated = $('#login').serialize();
+						return doLogin();
+					       return true;
+					    }
+
+					});
+
+
+						function handleErrors(response) {
+						    if (!response.ok) {
+							throw Error(response.statusText);
+						    }
+						    return response;
+						}
+            })
+
+
+            
+
+            $("#reconnect-form").on('click', function(ev) {
+                ev.preventDefault();
+                var code2 = $("#code2").val(),
+                    mac = $("#mac2").val()
+
+                if (!code2 || code2 == null) {
+                    swal.fire('', "Please enter the mpesa code", 'error')
+                    return
+                }
+                if (!mac || mac == null) {
+                    swal.fire('', "mac not found call admin ", 'error')
+                    return
+                }
+
+
+                const codeData3 = {
+                    "mac": mac,
+                    "code2": code2,
+                    "routr": router
+                }
+
+
+             				Swal.fire({
+					  title: "Please wait...",
+					text:  'Kindly wait as we try to validate your MPESA CODE and connect you, this may take up to 40sec.',
+					  imageUrl: "Loading_3.gif",
+						  showConfirmButton: false,
+              				allowOutsideClick: false,
+              				focusConfirm: false,
+					  timer: 30000,
+					  timerProgressBar: true,
+					  didOpen: () => {
+					    Swal.showLoading()
+					    
+					    const b = Swal.getHtmlContainer().querySelector('b')
+					    timerInterval = setInterval(() => {
+					      b.textContent = Swal.getTimerLeft()
+					    }, 100)
+					  },
+					  willClose: () => {
+					    clearInterval(timerInterval)
+					  }
+					  
+						
+					}).then((result) => {
+					  /* Read more about handling dismissals below */
+					  if (result.dismiss === Swal.DismissReason.timer) {
+					  Swal.fire({
+						  icon: 'error',
+						  title: 'Oops...',
+						  text: 'Your request took too long try again.'
+						 
+						})
+					    //console.log('I was closed by the timer')
+					  }          
+						
+					
+					})
+					
+			             
+ 					$.ajax({
+					    type: "POST",
+					    url: lnmolink5,
+					    data: codeData3,
+					    success: function(response) {
+					   
+					  swal.fire("", response)
+					  location.reload(); 
+						var jsFormValidated = $('#login').serialize();
+						return doLogin();						
+					        return true;
+					    }
+
+					});
+
+
+						function handleErrors(response) {
+						    if (!response.ok) {
+							throw Error(response.statusText);
+						    }
+						    return response;
+						}
+           
+
+            })
+       
+
+
+
+
+
+
+        function doLogin2(username, password) {
+            var loginOnly = "http://detailedspace1.net/login";
+            var linkOrig = "http://www.msftconnecttest.com/redirect";
+            document.sendin.action = loginOnly;
+            document.sendin.username.value = username;
+            document.sendin.dst.value = linkOrig;
+            var psw = password;
+            /*
+            psw = hexMD5('\232' + password + '\216\223\027\107\152\147\142\113\044\022\146\176\026\264\077\110');
+        */
+
+            document.sendin.password.value = psw;
+            document.sendin.submit();
+            return false;
+        }
+
+
+
+
+        
+
+        function dvalue(value) {
+        	
+            var lnmolink, lnmolink2, lnmolink3, lnmolink4, lnmolink5, router;
+            $.getJSON("prices.json", function(data) {
+
+                if (data) {
+                    const  lnmolink = data.lnmoapi
+                    lnmolink2 = data.lnmoapi2
+                    lnmolink3 = data.lnmoapi3
+                    lnmolink4 = data.lnmoapi4
+                    lnmolink5 = data.lnmoapi5
+                       router = data.router
+                    amount = value
+            window.document.getElementById('amount').value = value
+             var Amount = value,
+                    Phone = $("#phone").val(),
+                    mac = $("#mac").val(),
+                    user = $("#user2").val(),
+                    select = $("#select").val(),
+                    BillRefNumber = 'datas-' + Amount
+
+
+             // Use plan validation from JSON
+             plan = data.plan_validation[Amount] || null; 
+
+
+
+                if (!Amount || Amount == null) {
+                    swal.fire('', "Please tap one Data Choice to pay", 'error')
+                    return
+                }
+                if (!plan || plan == null) {
+                    swal.fire('', "Plan not found call admin", 'error')
+                    return
+                }
+
+               
+     
+            var msg = "You are about to pay KSH: ${amount}. Enter phonenumber below and click PAY NOW";
+            const regexp = /\${([^{]+)}/g;
+            let result = msg.replace(regexp, function(ignore, key) {
+                return eval(key);
+            });
+
+             var timer2 = null;
+            var checkoutRequestID = null;
+            var reqCounter = 0;
+            var paymentDialog = false;
+            var error = null;
+            var validatingPayment = false;
+            var phone = null;
+            var amount = null;
+
+
+            function stkPushQuery(checkoutRequestID) {
+            	let timerInterval
+					Swal.fire({
+					  title: "Please wait...",
+					text:  'Kindly wait as we try to validate your transaction and connect you, this may take up to 40sec, ensure you have ENTER the pin and confirmed the payment on your phone.',
+					  imageUrl: "Loading_2.gif",
+						  showConfirmButton: false,
+              				allowOutsideClick: false,
+              				focusConfirm: false,
+					  timer: 30000,
+					  timerProgressBar: true,
+					  didOpen: () => {
+					    Swal.showLoading()
+					    const b = Swal.getHtmlContainer().querySelector('b')
+					    timerInterval = setInterval(() => {
+					      b.textContent = Swal.getTimerLeft()
+					    }, 100)
+					  },
+					  willClose: () => {
+					    clearInterval(timerInterval)
+					  }
+					}).then((result) => {
+					  /* Read more about handling dismissals below */
+					  if (result.dismiss === Swal.DismissReason.timer) {
+					  Swal.fire({
+						  icon: 'error',
+						  title: 'Oops...',
+						  text: 'You took too long to confirm the payment.'
+						 
+						})
+					    console.log('I was closed by the timer')
+					  }          
+						
+					
+					})
+                error = null;
+                //    alert(checkoutRequestID)
+                timer2 = setInterval(function() {
+                    reqCounter += 1;
+                    if (reqCounter === 10) {
+                        clearInterval(timer2);
+                        $("#paymentDialog").modal("hide");
+                        $("#stkErrorMessage").text("You took too long to pay!");
+                        Swal.fire({
+			  icon: 'error',
+			  title: 'Oops...',
+			  text: 'You took too long to confirm the payment.'
+			 
+			})
+                        return;
+                    }
+                   
+
+                    $.post(
+                        lnmolink3, {
+                            ref: checkoutRequestID
+                        },
+                        function(response, status) {
+                            console.log(response)
+                            response = JSON.parse(response);
+                            // console.log(response);
+                           
+
+                            if (status === "success") {
+                                // Handle successful payment (ResultCode: 0)
+                                if (response.ResultCode === "0" || response.ResultCode === 0) {
+                                    clearInterval(timer2);
+                                    Swal.fire({
+					
+					  imageUrl: "loading2.gif",
+					    showConfirmButton: false,
+              				allowOutsideClick: false,
+              				focusConfirm: false,
+					  title: 'PAYMENT VERIFICATION',
+					  text: 'Your payment has been verified...connecting you to internet.'
+					 
+					})
+
+
+                                    $.ajax({
+                                        type: "POST",
+                                        url: lnmolink4,
+                                        timeout: 15000,
+                                        success: function(response) {    
+                                        clearInterval(timer2);                            
+                                            swal.fire("", 
+                                            "Your payment has been verified. Connecting you to internet. Enjoy your browsing!",
+                                             "success")
+                                                $("#paymentDialog").modal("hide");
+                                            $("#stkErrorMessage").hide();
+                                            
+                                            
+                                            
+                                            setTimeout(() => {
+                                                var jsFormValidated = $('#login').serialize();
+                                                var user = $("#user2").val();
+                                                if (!user || user == null) {
+                                                location.reload(); 
+                                                    return doLogin();
+                                                    return true;
+                                                } else {
+                                                    return doLogin2(user, user);
+                                                    return true;
+
+                                                }
+
+                                            }, 3000);
+                                        },
+											error: function (xhr, status, error) {
+												 if (status === 'timeout') {
+												 	 setTimeout(() => {
+                                                var jsFormValidated = $('#login').serialize();
+                                                var user = $("#user2").val();
+                                                if (!user || user == null) {
+                                                location.reload(); 
+                                                    return doLogin();
+                                                    return true;
+                                                } else {
+                                                    return doLogin2(user, user);
+                                                    return true;
+
+                                                }
+
+                                            }, 3000);
+												 }else {
+
+
+												
+											  // Error callback
+											   $.ajax({
+                                        type: "POST",
+                                        url: lnmolink4,
+                                         timeout: 15000,
+                                        success: function(response) {    
+                                        clearInterval(timer2);                            
+                                            swal.fire("", 
+                                            "Your payment has been verified. Connecting you to internet. Enjoy your browsing!",
+                                             "success")
+                                                $("#paymentDialog").modal("hide");
+                                            $("#stkErrorMessage").hide();
+                                            
+                                            setTimeout(() => {
+                                                var jsFormValidated = $('#login').serialize();
+                                                var user = $("#user2").val();
+                                                if (!user || user == null) {
+                                                location.reload(); 
+                                                    return doLogin();
+                                                    return true;
+                                                } else {
+                                                    return doLogin2(user, user);
+                                                    return true;
+
+                                                }
+
+                                            }, 3000);
+                                        },error: function (xhr, status, error) {
+                                        	setTimeout(() => {
+                                                var jsFormValidated = $('#login').serialize();
+                                                var user = $("#user2").val();
+                                                if (!user || user == null) {
+                                                location.reload(); 
+                                                    return doLogin();
+                                                    return true;
+                                                } else {
+                                                    return doLogin2(user, user);
+                                                    return true;
+
+                                                }
+
+                                            }, 3000);
+                                        }
+                                    })
+												 }
+											 
+											}
+                                    })
+
+                                // Handle user cancellation (ResultCode: 1032)
+                                } else if (response.ResultCode === "1032" || response.ResultCode === 1032) {
+                                    clearInterval(timer2);
+                                    $("#stkErrorMessage").text("Payment cancelled by user");
+                                    $("#stkErrorMessage").show();
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Payment Cancelled',
+                                        text: 'You cancelled the payment request. Please try again if you want to proceed.',
+                                    });
+                                    return;
+                                
+                                // Handle timeout/user unreachable (ResultCode: 1037)
+                                } else if (response.ResultCode === "1037" || response.ResultCode === 1037) {
+                                    clearInterval(timer2);
+                                    $("#stkErrorMessage").text("Unable to reach your phone. Please check your network connection");
+                                    $("#stkErrorMessage").show();
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Connection Error',
+                                        text: 'Unable to reach your phone. Please ensure you have network connectivity and try again.',
+                                    });
+                                    return;
+                                
+                                // Handle no response from user
+                                } else if (response.ResultCode === "1025" || response.ResultCode === 1025) {
+                                    clearInterval(timer2);
+                                    $("#stkErrorMessage").text("No response from user");
+                                    $("#stkErrorMessage").show();
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'No Response',
+                                        text: 'You did not respond to the payment prompt in time. Please try again.',
+                                    });
+                                    return;
+                                
+                                // Handle system errors (ResultCode: 9999)
+                                } else if (response.ResultCode === "9999" || response.ResultCode === 9999) {
+                                    clearInterval(timer2);
+                                    $("#stkErrorMessage").text("System error occurred. Please try again later");
+                                    $("#stkErrorMessage").show();
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'System Error',
+                                        text: 'A system error occurred while processing your payment. Please try again later.',
+                                    });
+                                    return;
+                                
+                                // Handle transaction still processing (ResultCode: 4999)
+                                } else if (response.ResultCode === "4999" || response.ResultCode === 4999) {
+                                    // Don't clear the timer, keep checking status
+                                    console.log("Transaction still processing, continuing to check status...");
+                                    $("#stkErrorMessage").text("Transaction is still being processed. Please wait...");
+                                    $("#stkErrorMessage").show();
+                                    // Continue the loop - don't return, let it check again
+                                
+                                // Handle legacy error code
+                                } else if (response.errorCode === "500.001.1001") {
+                                    clearInterval(timer2);
+                                    $("#stkErrorMessage").text(response.errorMessage);
+                                    $("#stkErrorMessage").show();
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Payment Error',
+                                        text: response.errorMessage || 'An error occurred during payment processing.',
+                                    });
+                                    return;
+                                
+                                // Handle any other error codes
+                                } else {
+                                    clearInterval(timer2);
+                                    var errorMessage = response.ResultDesc || 'Unknown error occurred during payment processing';
+                                    $("#stkErrorMessage").text(errorMessage);
+                                    $("#stkErrorMessage").show();
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Payment Failed',
+                                        text: errorMessage,
+                                    });
+                                    return;
+                                }
+                            } else {
+                                clearInterval(timer2);
+                                $("#stkErrorMessage").text(
+                                    "Internal error occurred. Please try again later!"
+                                );
+                               Swal.fire({
+							  icon: 'error',
+							  title: 'Connection Error',
+							  text: 'Unable to verify payment status. Please check your connection and try again.',
+							})
+                                return;
+                            }
+                        }
+                    );
+                }, 5000);
+            }
+           
+
+				swal.fire({
+				title: 'ENTER SAFARICOM PHONENUMBER.',
+				input: 'number',
+				inputAttributes: {
+				        input: 'number',
+				        required: 'true'
+				      },
+		 inputValidator: function(value) {
+    if(value === '') { return !value && 'You need to write your phonenumber!'}},
+				text: result,
+				showCancelButton: false,
+				confirmButtonText: 'Pay now',
+				cancelButtonText: 'Cancel',
+				showLoaderOnConfirm: true,
+				preConfirm: (value) => {
+					
+				 const mpesaData = {
+                    "mac": mac,
+                    "plan": plan,
+                    "phone": value,
+                    "amount": Amount,
+                    "routr": router,
+                    "accoint1": mac
+                }
+
+
+					
+					return $.ajax({
+			                    type: "POST",
+			                    url: lnmolink,
+			                    data: mpesaData,
+			
+			                })
+								.then(response => {
+						return response
+					})
+					.catch(error => {
+						//console.log(error); // Nice to view which properties 'error' have
+						swal.showValidationError(
+							`An error ocurred: ${error.status}`
+						)
+					})
+
+				},
+				allowOutsideClick: () => !swal.isLoading()
+			}).then((result) => {
+				if (result.value) {
+				
+					
+
+						checkoutRequestID = result.value
+			          stkPushQuery(checkoutRequestID)
+				}
+			})
+            } 
+            })
+        }
+    </script>
+
+</body>
+
+</html>
