@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+        }
+
+        .game-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 380px;
+        }
+
+        button {
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            margin: 8px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background-color: #0056b3;
+        }
+
+        #score-board {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        #result-display {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h1>Rock, Paper, Scissors</h1>
+
+    <div class="choices">
+        <button onclick="playGame('rock')">🪨 Rock</button>
+        <button onclick="playGame('paper')">📄 Paper</button>
+        <button onclick="playGame('scissors')">✂️ Scissors</button>
+    </div>
+
+    <div id="score-board">
+        Player: <span id="player-score">0</span> |
+        Computer: <span id="computer-score">0</span> |
+        Draws: <span id="draw-score">0</span>
+    </div>
+
+    <div id="result-display">
+        <p id="user-choice">You: </p>
+        <p id="computer-choice">Computer: </p>
+        <h2 id="winner-text">Choose your weapon!</h2>
+    </div>
+</div>
+
+<script>
+    let playerScore = 0;
+    let computerScore = 0;
+    let drawScore = 0;  // NEW DRAW COUNTER
+
+    function playGame(userChoice) {
+
+        userChoice = userChoice.trim().toLowerCase();
+
+        const choices = ['rock', 'paper', 'scissors'];
+        const randomIndex = Math.floor(Math.random() * choices.length);
+        const computerChoice = choices[randomIndex];
+
+        document.getElementById('user-choice').innerText = "You: " + userChoice;
+        document.getElementById('computer-choice').innerText = "Computer: " + computerChoice;
+
+        let result = "";
+
+        if (userChoice === computerChoice) {
+            drawScore++;  // COUNT DRAW
+            result = "It's a draw! 🤝";
+        } 
+        else if (
+            (userChoice === 'rock' && computerChoice === 'scissors') ||
+            (userChoice === 'paper' && computerChoice === 'rock') ||
+            (userChoice === 'scissors' && computerChoice === 'paper')
+        ) {
+            playerScore++;
+            result = "You win! 🎉";
+        } 
+        else {
+            computerScore++;
+            result = "Computer wins! 🤖";
+        }
+
+        // Update scoreboard
+        document.getElementById('player-score').innerText = playerScore;
+        document.getElementById('computer-score').innerText = computerScore;
+        document.getElementById('draw-score').innerText = drawScore;
+
+        document.getElementById('winner-text').innerText = result;
+    }
+</script>
+
+</body>
+</html>
